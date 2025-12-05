@@ -52,6 +52,8 @@
    - Frontend: https://localhost:7156/sistema-inventario-integrado.html
    - **Login:** admin / Admin123!
 
+**Realizar los ajustes del puerto en la URL y en el html donde se hace la invocación de las API's
+
 ### Dependencias incluidas
 - Entity Framework Core 7.0.20
 - JWT Bearer Authentication 7.0.20
