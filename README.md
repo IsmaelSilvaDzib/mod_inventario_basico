@@ -4,7 +4,7 @@
 
 ### Prerrequisitos
 - [.NET 7 SDK](https://dotnet.microsoft.com/download/dotnet/7.0)
-- SQL Server Express LocalDB
+- SQL Server Express
 - Visual Studio 2022 / VS Code / cualquier editor
 
 ### Pasos de instalación
