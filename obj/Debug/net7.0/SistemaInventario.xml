@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SistemaInventario</name>
+    </assembly>
+    <members>
+        <member name="M:SistemaInventario.Controllers.AuthController.Login(SistemaInventario.Application.DTO.LoginDto)">
+            <summary>
+            Autentica un usuario y devuelve un token JWT
+            </summary>
+            <param name="loginDto">Credenciales de login</param>
+            <returns>Token JWT y datos del usuario</returns>
+        </member>
+        <member name="M:SistemaInventario.Controllers.AuthController.Register(SistemaInventario.Application.DTO.CreateUserDto)">
+            <summary>
+            Registra un nuevo usuario en el sistema
+            </summary>
+            <param name="createUserDto">Datos del nuevo usuario</param>
+            <returns>Datos del usuario creado</returns>
+        </member>
+        <member name="M:SistemaInventario.Controllers.AuthController.GetProfile">
+            <summary>
+            Obtiene el perfil del usuario autenticado
+            </summary>
+            <returns>Datos del usuario actual</returns>
+        </member>
+        <member name="M:SistemaInventario.Controllers.AuthController.ChangePassword(SistemaInventario.Application.DTO.ChangePasswordDto)">
+            <summary>
+            Cambia la contraseña del usuario autenticado
+            </summary>
+            <param name="changePasswordDto">Contraseña actual y nueva contraseña</param>
+            <returns>Confirmación de cambio de contraseña</returns>
+        </member>
+        <member name="M:SistemaInventario.Controllers.AuthController.ValidateToken">
+            <summary>
+            Verifica si un token JWT es válido
+            </summary>
+            <returns>Estado de validez del token</returns>
+        </member>
+        <member name="M:SistemaInventario.Controllers.CategoriesController.GetAllCategories">
+            <summary>
+            Obtiene todas las categorías
+            </summary>
+            <returns>Lista de todas las categorías</returns>
+        </member>
+        <member name="M:SistemaInventario.Controllers.CategoriesController.GetActiveCategories">
+            <summary>
+            Obtiene solo las categorías activas
+            </summary>
+            <returns>Lista de categorías activas</returns>
+        </member>
+        <member name="M:SistemaInventario.Controllers.CategoriesController.GetCategory(System.Int32)">
+            <summary>
+            Obtiene una categoría específica por su ID
+            </summary>
+            <param name="id">ID de la categoría</param>
+            <returns>Categoría encontrada</returns>
+        </member>
+        <member name="M:SistemaInventario.Controllers.CategoriesController.GetProductsByCategory(System.Int32)">
+            <summary>
+            Obtiene todos los productos de una categoría específica
+            </summary>
+            <param name="id">ID de la categoría</param>
+            <returns>Lista de productos de la categoría</returns>
+        </member>
+        <member name="M:SistemaInventario.Controllers.CategoriesController.CreateCategory(SistemaInventario.Application.DTO.CreateCategoryDto)">
+            <summary>
+            Crea una nueva categoría
+            </summary>
+            <param name="createCategoryDto">Datos de la categoría a crear</param>
+            <returns>Categoría creada</returns>
+        </member>
+        <member name="M:SistemaInventario.Controllers.CategoriesController.UpdateCategory(System.Int32,SistemaInventario.Application.DTO.UpdateCategoryDto)">
+            <summary>
+            Actualiza una categoría existente
+            </summary>
+            <param name="id">ID de la categoría a actualizar</param>
+            <param name="updateCategoryDto">Datos actualizados de la categoría</param>
+            <returns>Categoría actualizada</returns>
+        </member>
+        <member name="M:SistemaInventario.Controllers.CategoriesController.DeactivateCategory(System.Int32)">
+            <summary>
+            Desactiva una categoría
+            </summary>
+            <param name="id">ID de la categoría a desactivar</param>
+            <returns>Confirmación de desactivación</returns>
+        </member>
+        <member name="M:SistemaInventario.Controllers.CategoriesController.DeleteCategory(System.Int32)">
+            <summary>
+            Elimina una categoría del sistema
+            </summary>
+            <param name="id">ID de la categoría a eliminar</param>
+            <returns>Confirmación de eliminación</returns>
+        </member>
+        <member name="M:SistemaInventario.Controllers.ProductsController.GetAllProducts">
+            <summary>
+            Obtiene todos los productos del inventario
+            </summary>
+            <returns>Lista de productos</returns>
+        </member>
+        <member name="M:SistemaInventario.Controllers.ProductsController.GetProduct(System.Int32)">
+            <summary>
+            Obtiene un producto específico por su ID
+            </summary>
+            <param name="id">ID del producto</param>
+            <returns>Producto encontrado</returns>
+        </member>
+        <member name="M:SistemaInventario.Controllers.ProductsController.CreateProduct(SistemaInventario.Application.DTO.CreateProductDto)">
+            <summary>
+            Crea un nuevo producto en el inventario
+            </summary>
+            <param name="createProductDto">Datos del producto a crear</param>
+            <returns>Producto creado</returns>
+        </member>
+        <member name="M:SistemaInventario.Controllers.ProductsController.UpdateProduct(System.Int32,SistemaInventario.Application.DTO.UpdateProductDto)">
+            <summary>
+            Actualiza un producto existente
+            </summary>
+            <param name="id">ID del producto a actualizar</param>
+            <param name="updateProductDto">Datos actualizados del producto</param>
+            <returns>Producto actualizado</returns>
+        </member>
+        <member name="M:SistemaInventario.Controllers.ProductsController.UpdateStock(System.Int32,SistemaInventario.Application.DTO.UpdateStockDto)">
+            <summary>
+            Actualiza solo el stock de un producto
+            </summary>
+            <param name="id">ID del producto</param>
+            <param name="updateStockDto">Nuevo valor de stock</param>
+            <returns>Producto con stock actualizado</returns>
+        </member>
+        <member name="M:SistemaInventario.Controllers.ProductsController.DeleteProduct(System.Int32)">
+            <summary>
+            Elimina un producto del inventario
+            </summary>
+            <param name="id">ID del producto a eliminar</param>
+            <returns>Confirmación de eliminación</returns>
+        </member>
+        <member name="M:SistemaInventario.Controllers.ProductsController.SearchProducts(System.String)">
+            <summary>
+            Busca productos por nombre
+            </summary>
+            <param name="search">Término de búsqueda</param>
+            <returns>Productos que coinciden con la búsqueda</returns>
+        </member>
+        <member name="M:SistemaInventario.Controllers.ProductsController.GetLowStockProducts">
+            <summary>
+            Obtiene productos con stock bajo
+            </summary>
+            <returns>Productos con stock menor a 10 unidades</returns>
+        </member>
+        <member name="M:SistemaInventario.Controllers.ProductsController.GetStatistics">
+            <summary>
+            Obtiene estadísticas del inventario
+            </summary>
+            <returns>Estadísticas generales del inventario</returns>
+        </member>
+        <member name="M:SistemaInventario.Controllers.ProductsController.ApplyDiscount(System.Decimal)">
+            <summary>
+            Aplica descuento masivo a todos los productos
+            </summary>
+            <param name="discountPercentage">Porcentaje de descuento (1-100)</param>
+            <returns>Confirmación de aplicación de descuento</returns>
+        </member>
+        <member name="T:SistemaInventario.Migrations.firstmigration">
+            <inheritdoc />
+        </member>
+        <member name="M:SistemaInventario.Migrations.firstmigration.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:SistemaInventario.Migrations.firstmigration.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:SistemaInventario.Migrations.firstmigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:SistemaInventario.Migrations.inicial">
+            <inheritdoc />
+        </member>
+        <member name="M:SistemaInventario.Migrations.inicial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:SistemaInventario.Migrations.inicial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:SistemaInventario.Migrations.inicial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,320 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|c:\\users\\ismae\\source\\repos\\sistemainventario\\sistemainventario.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|solutionrelative:sistemainventario.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|c:\\users\\ismae\\source\\repos\\sistemainventario\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|c:\\users\\ismae\\source\\repos\\sistemainventario\\domain\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|solutionrelative:domain\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|c:\\users\\ismae\\source\\repos\\sistemainventario\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|solutionrelative:controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|c:\\users\\ismae\\source\\repos\\sistemainventario\\application\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|solutionrelative:application\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|c:\\users\\ismae\\source\\repos\\sistemainventario\\application\\dto\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|solutionrelative:application\\dto\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|c:\\users\\ismae\\source\\repos\\sistemainventario\\domain\\entities\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|solutionrelative:domain\\entities\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|c:\\users\\ismae\\source\\repos\\sistemainventario\\controllers\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|solutionrelative:controllers\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|c:\\users\\ismae\\source\\repos\\sistemainventario\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|c:\\users\\ismae\\source\\repos\\sistemainventario\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|c:\\users\\ismae\\source\\repos\\sistemainventario\\application\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|solutionrelative:application\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|c:\\users\\ismae\\source\\repos\\sistemainventario\\wwwroot\\inventario_con_apis.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|solutionrelative:wwwroot\\inventario_con_apis.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|c:\\users\\ismae\\source\\repos\\sistemainventario\\application\\dto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|solutionrelative:application\\dto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Migrations\\20251201170045_addservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20251201170045_addservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|c:\\users\\ismae\\source\\repos\\sistemainventario\\infrastructure\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|solutionrelative:infrastructure\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|c:\\users\\ismae\\source\\repos\\sistemainventario\\domain\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|solutionrelative:domain\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|c:\\users\\ismae\\source\\repos\\sistemainventario\\migrations\\20251128180834_firstmigration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|solutionrelative:migrations\\20251128180834_firstmigration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|c:\\users\\ismae\\source\\repos\\sistemainventario\\migrations\\20251201170226_inicial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C18C5493-B619-414E-A4BE-80E35A79E153}|SistemaInventario.csproj|solutionrelative:migrations\\20251201170226_inicial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "inventario_con_apis.html",
+              "DocumentMoniker": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\wwwroot\\inventario_con_apis.html",
+              "RelativeDocumentMoniker": "wwwroot\\inventario_con_apis.html",
+              "ToolTip": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\wwwroot\\inventario_con_apis.html",
+              "RelativeToolTip": "wwwroot\\inventario_con_apis.html",
+              "ViewState": "AQIAAK8CAAAAAAAAAAAAALUCAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-12-01T18:50:38.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SistemaInventario.csproj",
+              "DocumentMoniker": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\SistemaInventario.csproj",
+              "RelativeDocumentMoniker": "SistemaInventario.csproj",
+              "ToolTip": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\SistemaInventario.csproj",
+              "RelativeToolTip": "SistemaInventario.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-12-01T18:26:17.092Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "UserDTO.cs",
+              "DocumentMoniker": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Application\\DTO\\UserDTO.cs",
+              "RelativeDocumentMoniker": "Application\\DTO\\UserDTO.cs",
+              "ToolTip": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Application\\DTO\\UserDTO.cs",
+              "RelativeToolTip": "Application\\DTO\\UserDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-01T18:20:35.507Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ProductDTO.cs",
+              "DocumentMoniker": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Application\\DTO\\ProductDTO.cs",
+              "RelativeDocumentMoniker": "Application\\DTO\\ProductDTO.cs",
+              "ToolTip": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Application\\DTO\\ProductDTO.cs",
+              "RelativeToolTip": "Application\\DTO\\ProductDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-01T18:16:29.845Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Controllers\\AuthController.cs",
+              "ViewState": "AQIAALoAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-01T18:15:42.325Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CategoriesController.cs",
+              "DocumentMoniker": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Controllers\\CategoriesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CategoriesController.cs",
+              "ToolTip": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Controllers\\CategoriesController.cs",
+              "RelativeToolTip": "Controllers\\CategoriesController.cs",
+              "ViewState": "AQIAAMoAAAAAAAAAAAAAAPMAAABXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-01T18:14:25.886Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Controllers\\ProductsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProductsController.cs",
+              "ToolTip": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Controllers\\ProductsController.cs",
+              "RelativeToolTip": "Controllers\\ProductsController.cs",
+              "ViewState": "AQIAAGsAAAAAAAAAAAApwIMAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-01T18:13:23.175Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "20251201170226_inicial.cs",
+              "DocumentMoniker": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Migrations\\20251201170226_inicial.cs",
+              "RelativeDocumentMoniker": "Migrations\\20251201170226_inicial.cs",
+              "ToolTip": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Migrations\\20251201170226_inicial.cs",
+              "RelativeToolTip": "Migrations\\20251201170226_inicial.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-01T17:02:26.519Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "20251201170045_addservices.cs",
+              "DocumentMoniker": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Migrations\\20251201170045_addservices.cs",
+              "RelativeDocumentMoniker": "Migrations\\20251201170045_addservices.cs",
+              "ToolTip": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Migrations\\20251201170045_addservices.cs",
+              "RelativeToolTip": "Migrations\\20251201170045_addservices.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-01T17:00:46.033Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Domain\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\User.cs",
+              "ToolTip": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Domain\\Entities\\User.cs",
+              "RelativeToolTip": "Domain\\Entities\\User.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-01T16:55:56.592Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Category.cs",
+              "DocumentMoniker": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Domain\\Entities\\Category.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Category.cs",
+              "ToolTip": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Domain\\Entities\\Category.cs",
+              "RelativeToolTip": "Domain\\Entities\\Category.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-01T16:55:40.739Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Domain\\Entities\\Product.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Product.cs",
+              "ToolTip": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Domain\\Entities\\Product.cs",
+              "RelativeToolTip": "Domain\\Entities\\Product.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-01T16:55:17.263Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Infrastructure\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Infrastructure\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Infrastructure\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AQIAAKUAAAAAAAAAAAAiwNQAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-01T16:54:10.947Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAJMAAAAAAAAAAAAAAJ4AAAA/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-01T16:49:34.866Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "20251128180834_firstmigration.cs",
+              "DocumentMoniker": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Migrations\\20251128180834_firstmigration.cs",
+              "RelativeDocumentMoniker": "Migrations\\20251128180834_firstmigration.cs",
+              "ToolTip": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Migrations\\20251128180834_firstmigration.cs",
+              "RelativeToolTip": "Migrations\\20251128180834_firstmigration.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T18:08:34.594Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Application\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\AuthService.cs",
+              "ToolTip": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Application\\Services\\AuthService.cs",
+              "RelativeToolTip": "Application\\Services\\AuthService.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAgwIkAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T18:06:50.619Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProductService.cs",
+              "DocumentMoniker": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Application\\Services\\ProductService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\ProductService.cs",
+              "ToolTip": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\Application\\Services\\ProductService.cs",
+              "RelativeToolTip": "Application\\Services\\ProductService.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAApwB8AAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T18:05:43.386Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-28T18:01:48.666Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

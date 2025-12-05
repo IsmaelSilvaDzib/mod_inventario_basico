@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema de Gestión de Inventario - Control y administración de productos">
+    <meta name="author" content="Sistema de Inventario">
+    <title>Sistema de Gestión de Inventario - Full Stack</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+        
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        .stat-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .table-hover tbody tr:hover {
+            background-color: rgba(102, 126, 234, 0.1);
+        }
+        
+        .badge-stock-alto {
+            background-color: #28a745;
+        }
+        
+        .badge-stock-medio {
+            background-color: #ffc107;
+            color: #333;
+        }
+        
+        .badge-stock-bajo {
+            background-color: #dc3545;
+        }
+        
+        .product-image-placeholder {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .api-status {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1050;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .api-status.connected {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .api-status.disconnected {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .login-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            max-width: 400px;
+            width: 90%;
+        }
+    </style>
+</head>
+<body>
+    <!-- API Status Indicator -->
+    <div id="apiStatus" class="api-status disconnected">
+        <i class="bi bi-wifi-off"></i> API Desconectada
+    </div>
+
+    <!-- Login Overlay -->
+    <div id="loginOverlay" class="login-overlay">
+        <div class="login-card">
+            <h3 class="text-center mb-4">
+                <i class="bi bi-shield-lock text-primary"></i>
+                Iniciar Sesión
+            </h3>
+            <form id="loginForm">
+                <div class="mb-3">
+                    <label for="loginUsername" class="form-label">Usuario</label>
+                    <input type="text" class="form-control" id="loginUsername" value="admin" required>
+                </div>
+                <div class="mb-3">
+                    <label for="loginPassword" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="loginPassword" value="Admin123!" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
+                </button>
+            </form>
+            <div class="text-center mt-3">
+                <small class="text-muted">Usuario demo: admin / Admin123!</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-box-seam"></i> Sistema de Inventario Full-Stack
+            </a>
+            <div class="navbar-nav ms-auto">
+                <span class="navbar-text me-3" id="userInfo">
+                    <i class="bi bi-person-circle"></i> <span id="username">Invitado</span>
+                </span>
+                <button class="btn btn-outline-light btn-sm" id="logoutBtn" style="display: none;">
+                    <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Header Section -->
+        <header class="row mb-4">
+            <div class="col">
+                <div class="card shadow-lg border-0">
+                    <div class="card-body text-center py-4">
+                        <h1 class="display-4 mb-2">
+                            <i class="bi bi-box-seam text-primary"></i> 
+                            Gestión de Inventario
+                        </h1>
+                        <p class="lead text-muted mb-0">Sistema Full-Stack con .NET API + JavaScript Frontend</p>
+                        <small class="text-muted" id="connectionStatus">Conectando con API...</small>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Estadísticas Section -->
+        <section class="row mb-4" id="dashboard">
+            <div class="col-12 mb-3">
+                <h2 class="text-white">
+                    <i class="bi bi-graph-up"></i> Estadísticas Generales (desde API)
+                </h2>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-3">
+                <article class="card shadow border-0 stat-card h-100">
+                    <div class="card-body text-center">
+                        <div class="display-4 text-primary mb-2">
+                            <i class="bi bi-box-seam"></i>
+                        </div>
+                        <h3 class="display-4 mb-0" id="statTotalProductos">-</h3>
+                        <p class="text-muted mb-0">Total Productos</p>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-3">
+                <article class="card shadow border-0 stat-card h-100">
+                    <div class="card-body text-center">
+                        <div class="display-4 text-success mb-2">
+                            <i class="bi bi-currency-dollar"></i>
+                        </div>
+                        <h3 class="display-4 mb-0" id="statValorTotal">-</h3>
+                        <p class="text-muted mb-0">Valor Total</p>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-3">
+                <article class="card shadow border-0 stat-card h-100">
+                    <div class="card-body text-center">
+                        <div class="display-4 text-warning mb-2">
+                            <i class="bi bi-exclamation-triangle"></i>
+                        </div>
+                        <h3 class="display-4 mb-0" id="statBajoStock">-</h3>
+                        <p class="text-muted mb-0">Bajo Stock</p>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-3">
+                <article class="card shadow border-0 stat-card h-100">
+                    <div class="card-body text-center">
+                        <div class="display-4 text-info mb-2">
+                            <i class="bi bi-box"></i>
+                        </div>
+                        <h3 class="display-4 mb-0" id="statTotalUnidades">-</h3>
+                        <p class="text-muted mb-0">Unidades en Stock</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Gestión de Productos Section -->
+        <section class="row mb-4" id="productos">
+            <div class="col">
+                <div class="card shadow border-0">
+                    <div class="card-header bg-white">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <h3 class="mb-0">
+                                    <i class="bi bi-search"></i> Gestión de Productos
+                                </h3>
+                            </div>
+                            <div class="col-md-6 text-md-end mt-2 mt-md-0">
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregarProducto">
+                                    <i class="bi bi-plus-circle"></i> Agregar Producto
+                                </button>
+                                <button class="btn btn-success" id="btnRefrescar">
+                                    <i class="bi bi-arrow-clockwise"></i> Refrescar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="input-group input-group-lg mb-3">
+                            <span class="input-group-text">
+                                <i class="bi bi-search"></i>
+                            </span>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                id="inputBuscar" 
+                                placeholder="Buscar productos en el servidor..."
+                                aria-label="Buscar producto"
+                            >
+                        </div>
+                        
+                        <!-- Filtros -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <select class="form-select" id="filtroCategoria">
+                                    <option value="">Todas las categorías</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Loading indicator -->
+                        <div id="loadingIndicator" class="text-center py-4">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Cargando...</span>
+                            </div>
+                            <p class="mt-2">Cargando productos desde API...</p>
+                        </div>
+                        
+                        <!-- Tabla de Productos -->
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="table-primary">
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th>Precio</th>
+                                        <th>Categoría</th>
+                                        <th>Stock</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tablaInventario">
+                                    <tr>
+                                        <td colspan="6" class="text-center text-muted py-4">
+                                            Conectando con la API...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Agregar/Editar Producto -->
+    <div class="modal fade" id="modalAgregarProducto" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="bi bi-plus-circle"></i> <span id="modalTitle">Agregar Producto</span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formProducto">
+                        <input type="hidden" id="productoId">
+                        <div class="mb-3">
+                            <label for="nombreProducto" class="form-label">Nombre del Producto</label>
+                            <input type="text" class="form-control" id="nombreProducto" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="precioProducto" class="form-label">Precio</label>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input type="number" class="form-control" id="precioProducto" step="0.01" min="0" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="categoriaProducto" class="form-label">Categoría</label>
+                            <select class="form-select" id="categoriaProducto" required>
+                                <option value="">Selecciona una categoría</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="stockProducto" class="form-label">Stock</label>
+                            <input type="number" class="form-control" id="stockProducto" min="0" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnGuardarProducto">
+                        <i class="bi bi-save"></i> <span id="btnGuardarText">Guardar Producto</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // ========== CONFIGURACIÓN DE LA API ==========
+        class InventoryAPI {
+            constructor() {
+                this.baseUrl = 'https://localhost:7156/api'; // Ajusta el puerto
+                this.token = localStorage.getItem('jwt_token');
+                this.tokenExpiry = localStorage.getItem('jwt_expiry');
+                this.user = null;
+            }
+
+            // Headers para requests con debug
+            getHeaders() {
+                const headers = {
+                    'Content-Type': 'application/json'
+                };
+
+                if (this.token) {
+                    headers['Authorization'] = `Bearer ${this.token}`;
+                    console.log('🔑 Enviando token JWT:', this.token.substring(0, 50) + '...');
+                } else {
+                    console.log('❌ No hay token JWT disponible');
+                }
+
+                return headers;
+            }
+
+            // Verificar si el token ha expirado
+            isTokenExpired() {
+                if (!this.tokenExpiry) return true;
+
+                const expiry = new Date(this.tokenExpiry);
+                const now = new Date();
+                const expired = now >= expiry;
+
+                console.log('🕐 Token expiry check:', {
+                    expiry: expiry,
+                    now: now,
+                    expired: expired,
+                    minutesLeft: expired ? 0 : Math.round((expiry - now) / 60000)
+                });
+
+                return expired;
+            }
+
+            // Manejo mejorado de respuestas
+            async handleResponse(response) {
+                console.log(`📡 Response ${response.status} from ${response.url}`);
+
+                if (response.status === 401) {
+                    console.log('❌ 401 Unauthorized - Token inválido o expirado');
+                    this.logout();
+                    throw new Error('Token inválido o expirado. Por favor, inicia sesión nuevamente.');
+                }
+
+                if (!response.ok) {
+                    const error = await response.json().catch(() => ({
+                        message: `HTTP ${response.status} - ${response.statusText}`
+                    }));
+                    console.log('❌ API Error:', error);
+                    throw new Error(error.message || `HTTP ${response.status}`);
+                }
+
+                return response.json();
+            }
+
+            // Login mejorado con manejo de expiración
+            async login(username, password) {
+                try {
+                    console.log('🔐 Intentando login para:', username);
+
+                    const response = await fetch(`${this.baseUrl}/auth/login`, {
+                        method: 'POST',
+                        headers: this.getHeaders(),
+                        body: JSON.stringify({ username, password })
+                    });
+
+                    const data = await this.handleResponse(response);
+
+                    this.token = data.token;
+                    this.user = data.user;
+                    this.tokenExpiry = data.expiresAt;
+
+                    // Guardar en localStorage
+                    localStorage.setItem('jwt_token', this.token);
+                    localStorage.setItem('jwt_expiry', this.tokenExpiry);
+                    localStorage.setItem('user_data', JSON.stringify(this.user));
+
+                    console.log('✅ Login exitoso. Token expira en:', data.expiresAt);
+
+                    return data;
+                } catch (error) {
+                    console.error('❌ Error en login:', error);
+                    throw error;
+                }
+            }
+
+            logout() {
+                console.log('🚪 Cerrando sesión...');
+                this.token = null;
+                this.user = null;
+                this.tokenExpiry = null;
+                localStorage.removeItem('jwt_token');
+                localStorage.removeItem('jwt_expiry');
+                localStorage.removeItem('user_data');
+                window.location.reload();
+            }
+
+            isAuthenticated() {
+                const hasToken = !!this.token;
+                const tokenValid = !this.isTokenExpired();
+
+                console.log('🔍 Auth check:', {
+                    hasToken: hasToken,
+                    tokenValid: tokenValid,
+                    authenticated: hasToken && tokenValid
+                });
+
+                if (hasToken && !tokenValid) {
+                    console.log('⚠️ Token expirado, cerrando sesión automáticamente');
+                    this.logout();
+                    return false;
+                }
+
+                return hasToken && tokenValid;
+            }
+
+            // Método para verificar token antes de operaciones importantes
+            async ensureAuthenticated() {
+                if (!this.isAuthenticated()) {
+                    throw new Error('No autenticado. Por favor, inicia sesión.');
+                }
+
+                // Verificar con el servidor si el token sigue siendo válido
+                try {
+                    const response = await fetch(`${this.baseUrl}/auth/validate-token`, {
+                        headers: this.getHeaders()
+                    });
+
+                    if (response.status === 401) {
+                        this.logout();
+                        throw new Error('Sesión expirada. Por favor, inicia sesión nuevamente.');
+                    }
+                } catch (error) {
+                    console.log('⚠️ No se pudo validar el token con el servidor:', error);
+                }
+            }
+
+            // ========== PRODUCTOS CON VERIFICACIÓN ==========
+            async getProducts() {
+                const response = await fetch(`${this.baseUrl}/products`, {
+                    headers: this.getHeaders()
+                });
+                return this.handleResponse(response);
+            }
+
+            async getProduct(id) {
+                const response = await fetch(`${this.baseUrl}/products/${id}`, {
+                    headers: this.getHeaders()
+                });
+                return this.handleResponse(response);
+            }
+
+            /*async createProduct(productData) {
+                const response = await fetch(`${this.baseUrl}/products`, {
+                    method: 'POST',
+                    headers: this.getHeaders(),
+                    body: JSON.stringify(productData)
+                });
+                return this.handleResponse(response);
+            }*/
+
+            async updateProduct(id, productData) {
+                await this.ensureAuthenticated();
+
+                console.log(`📝 Actualizando producto ${id}:`, productData);
+
+                const response = await fetch(`${this.baseUrl}/products/${id}`, {
+                    method: 'PUT',
+                    headers: this.getHeaders(),
+                    body: JSON.stringify(productData)
+                });
+                return this.handleResponse(response);
+            }
+
+            async createProduct(productData) {
+                await this.ensureAuthenticated();
+
+                console.log('📝 Creando producto:', productData);
+
+                const response = await fetch(`${this.baseUrl}/products`, {
+                    method: 'POST',
+                    headers: this.getHeaders(),
+                    body: JSON.stringify(productData)
+                });
+                return this.handleResponse(response);
+            }
+
+            async updateStock(id, stock) {
+                const response = await fetch(`${this.baseUrl}/products/${id}/stock`, {
+                    method: 'PATCH',
+                    headers: this.getHeaders(),
+                    body: JSON.stringify({ stock })
+                });
+                return this.handleResponse(response);
+            }
+
+            async deleteProduct(id) {
+                await this.ensureAuthenticated();
+
+                console.log(`🗑️ Eliminando producto ${id}`);
+
+                const response = await fetch(`${this.baseUrl}/products/${id}`, {
+                    method: 'DELETE',
+                    headers: this.getHeaders()
+                });
+
+                if (response.status === 204) {
+                    return { success: true };
+                }
+
+                return this.handleResponse(response);
+            }
+
+            async searchProducts(searchTerm) {
+                const response = await fetch(`${this.baseUrl}/products/search?search=${encodeURIComponent(searchTerm)}`, {
+                    headers: this.getHeaders()
+                });
+                return this.handleResponse(response);
+            }
+
+            async getStatistics() {
+                const response = await fetch(`${this.baseUrl}/products/statistics`, {
+                    headers: this.getHeaders()
+                });
+                return this.handleResponse(response);
+            }
+
+            // ========== CATEGORÍAS ==========
+            async getCategories() {
+                const response = await fetch(`${this.baseUrl}/categories`, {
+                    headers: this.getHeaders()
+                });
+                return this.handleResponse(response);
+            }
+
+            async getActiveCategories() {
+                const response = await fetch(`${this.baseUrl}/categories/active`, {
+                    headers: this.getHeaders()
+                });
+                return this.handleResponse(response);
+            }
+        }
+
+        // ========== INICIALIZACIÓN ==========
+        const api = new InventoryAPI();
+        let productos = [];
+        let categorias = [];
+
+        // ========== UI HELPERS ==========
+        function updateApiStatus(connected) {
+            const statusEl = document.getElementById('apiStatus');
+            const connectionStatusEl = document.getElementById('connectionStatus');
+            
+            if (connected) {
+                statusEl.className = 'api-status connected';
+                statusEl.innerHTML = '<i class="bi bi-wifi"></i> API Conectada';
+                connectionStatusEl.textContent = 'Conectado con .NET API';
+            } else {
+                statusEl.className = 'api-status disconnected';
+                statusEl.innerHTML = '<i class="bi bi-wifi-off"></i> API Desconectada';
+                connectionStatusEl.textContent = 'Error de conexión con API';
+            }
+        }
+
+        function showLoading(show = true) {
+            const loadingEl = document.getElementById('loadingIndicator');
+            if (show) {
+                loadingEl.style.display = 'block';
+            } else {
+                loadingEl.style.display = 'none';
+            }
+        }
+
+        function showToast(mensaje, tipo = 'info') {
+            let toastContainer = document.querySelector('.toast-container');
+            if (!toastContainer) {
+                toastContainer = document.createElement('div');
+                toastContainer.className = 'toast-container position-fixed bottom-0 end-0 p-3';
+                document.body.appendChild(toastContainer);
+            }
+
+            const colores = {
+                success: 'bg-success',
+                warning: 'bg-warning',
+                danger: 'bg-danger',
+                info: 'bg-info'
+            };
+
+            const iconos = {
+                success: 'check-circle-fill',
+                warning: 'exclamation-triangle-fill',
+                danger: 'x-circle-fill',
+                info: 'info-circle-fill'
+            };
+
+            const toastHTML = `
+                <div class="toast align-items-center text-white ${colores[tipo]} border-0" role="alert">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            <i class="bi bi-${iconos[tipo]} me-2"></i>
+                            ${mensaje}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                    </div>
+                </div>
+            `;
+
+            toastContainer.insertAdjacentHTML('beforeend', toastHTML);
+            
+            const toastElement = toastContainer.lastElementChild;
+            const toast = new bootstrap.Toast(toastElement, { delay: 3000 });
+            toast.show();
+
+            toastElement.addEventListener('hidden.bs.toast', () => {
+                toastElement.remove();
+            });
+        }
+
+        // ========== AUTENTICACIÓN UI ==========
+        function showLoginOverlay() {
+            document.getElementById('loginOverlay').style.display = 'flex';
+        }
+
+        function hideLoginOverlay() {
+            document.getElementById('loginOverlay').style.display = 'none';
+        }
+
+        function updateUserUI() {
+            const userData = localStorage.getItem('user_data');
+            const usernameEl = document.getElementById('username');
+            const logoutBtn = document.getElementById('logoutBtn');
+            
+            if (userData && api.isAuthenticated()) {
+                const user = JSON.parse(userData);
+                usernameEl.textContent = user.username;
+                logoutBtn.style.display = 'block';
+                hideLoginOverlay();
+            } else {
+                usernameEl.textContent = 'Invitado';
+                logoutBtn.style.display = 'none';
+                showLoginOverlay();
+            }
+        }
+
+        // ========== CARGAR DATOS ==========
+        async function cargarCategorias() {
+            try {
+                categorias = await api.getActiveCategories();
+                
+                // Actualizar select del formulario
+                const selectCategoria = document.getElementById('categoriaProducto');
+                selectCategoria.innerHTML = '<option value="">Selecciona una categoría</option>';
+                
+                categorias.forEach(categoria => {
+                    selectCategoria.innerHTML += `<option value="${categoria.id}">${categoria.name}</option>`;
+                });
+
+                // Actualizar filtro de categorías
+                const filtroCategoria = document.getElementById('filtroCategoria');
+                filtroCategoria.innerHTML = '<option value="">Todas las categorías</option>';
+                
+                categorias.forEach(categoria => {
+                    filtroCategoria.innerHTML += `<option value="${categoria.id}">${categoria.name}</option>`;
+                });
+            } catch (error) {
+                console.error('Error cargando categorías:', error);
+                showToast('Error al cargar categorías', 'danger');
+            }
+        }
+
+        async function cargarProductos() {
+            try {
+                showLoading(true);
+                productos = await api.getProducts();
+                renderizarProductos();
+                await actualizarEstadisticas();
+                updateApiStatus(true);
+            } catch (error) {
+                console.error('Error cargando productos:', error);
+                showToast('Error al cargar productos: ' + error.message, 'danger');
+                updateApiStatus(false);
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        async function actualizarEstadisticas() {
+            try {
+                const stats = await api.getStatistics();
+                
+                document.getElementById('statTotalProductos').textContent = stats.totalProducts;
+                document.getElementById('statValorTotal').textContent = '$' + stats.totalValue.toLocaleString('es-MX', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+                document.getElementById('statBajoStock').textContent = stats.lowStockCount;
+                document.getElementById('statTotalUnidades').textContent = stats.totalUnits;
+            } catch (error) {
+                console.error('Error cargando estadísticas:', error);
+                // Valores por defecto en caso de error
+                document.getElementById('statTotalProductos').textContent = '0';
+                document.getElementById('statValorTotal').textContent = '$0.00';
+                document.getElementById('statBajoStock').textContent = '0';
+                document.getElementById('statTotalUnidades').textContent = '0';
+            }
+        }
+
+        function renderizarProductos() {
+            const tbody = document.getElementById('tablaInventario');
+            
+            if (productos.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="text-center text-muted py-4">
+                            <i class="bi bi-inbox display-1 d-block mb-2 text-muted"></i>
+                            No hay productos en el inventario
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = productos.map(producto => {
+                const estadoStock = obtenerEstadoStock(producto.stock);
+                const icono = obtenerIconoProducto(producto.name);
+                
+                return `
+                    <tr data-id="${producto.id}">
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="product-image-placeholder me-3">
+                                    ${icono}
+                                </div>
+                                <div>
+                                    <strong>${producto.name}</strong>
+                                    <br>
+                                    <small class="text-muted">ID: ${producto.id}</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <strong class="text-success">${producto.formattedPrice}</strong>
+                        </td>
+                        <td>
+                            <span class="badge bg-info">${producto.categoryName}</span>
+                        </td>
+                        <td>
+                            <span class="fw-bold">${producto.stock}</span>
+                            <div>
+                                <button class="btn btn-outline-success btn-sm" onclick="ajustarStock(${producto.id}, 1)" ${!api.isAuthenticated() ? 'disabled' : ''}>
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                                <button class="btn btn-outline-warning btn-sm" onclick="ajustarStock(${producto.id}, -1)" ${!api.isAuthenticated() || producto.stock <= 0 ? 'disabled' : ''}>
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="badge ${estadoStock.clase}">
+                                <i class="bi ${estadoStock.icono}"></i>
+                                ${estadoStock.texto}
+                            </span>
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <button class="btn btn-outline-primary btn-sm" onclick="editarProducto(${producto.id})" ${!api.isAuthenticated() ? 'disabled' : ''}>
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                                <button class="btn btn-outline-danger btn-sm" onclick="eliminarProducto(${producto.id})" ${!api.isAuthenticated() ? 'disabled' : ''}>
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // ========== OPERACIONES DE PRODUCTOS ==========
+        async function guardarProducto() {
+            const form = document.getElementById('formProducto');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const productoData = {
+                name: document.getElementById('nombreProducto').value,
+                price: parseFloat(document.getElementById('precioProducto').value),
+                stock: parseInt(document.getElementById('stockProducto').value),
+                categoryId: parseInt(document.getElementById('categoriaProducto').value)
+            };
+
+            const productoId = document.getElementById('productoId').value;
+
+            try {
+                if (productoId) {
+                    // Actualizar producto existente
+                    await api.updateProduct(productoId, productoData);
+                    showToast('Producto actualizado correctamente', 'success');
+                } else {
+                    // Crear nuevo producto
+                    await api.createProduct(productoData);
+                    showToast('Producto creado correctamente', 'success');
+                }
+
+                // Cerrar modal y recargar datos
+                bootstrap.Modal.getInstance(document.getElementById('modalAgregarProducto')).hide();
+                await cargarProductos();
+                limpiarFormulario();
+            } catch (error) {
+                console.error('Error guardando producto:', error);
+                showToast('Error: ' + error.message, 'danger');
+            }
+        }
+
+        async function editarProducto(id) {
+            try {
+                const producto = await api.getProduct(id);
+                
+                // Llenar formulario
+                document.getElementById('productoId').value = producto.id;
+                document.getElementById('nombreProducto').value = producto.name;
+                document.getElementById('precioProducto').value = producto.price;
+                document.getElementById('stockProducto').value = producto.stock;
+                document.getElementById('categoriaProducto').value = producto.categoryId;
+                
+                // Cambiar títulos
+                document.getElementById('modalTitle').textContent = 'Editar Producto';
+                document.getElementById('btnGuardarText').textContent = 'Actualizar Producto';
+                
+                // Mostrar modal
+                new bootstrap.Modal(document.getElementById('modalAgregarProducto')).show();
+            } catch (error) {
+                console.error('Error cargando producto:', error);
+                showToast('Error al cargar producto: ' + error.message, 'danger');
+            }
+        }
+
+        async function eliminarProducto(id) {
+            const producto = productos.find(p => p.id === id);
+            if (!producto) return;
+
+            if (confirm(`¿Estás seguro de eliminar "${producto.name}"?`)) {
+                try {
+                    await api.deleteProduct(id);
+                    showToast(`Producto "${producto.name}" eliminado correctamente`, 'success');
+                    await cargarProductos();
+                } catch (error) {
+                    console.error('Error eliminando producto:', error);
+                    showToast('Error al eliminar producto: ' + error.message, 'danger');
+                }
+            }
+        }
+
+        async function ajustarStock(id, cambio) {
+            try {
+                const producto = productos.find(p => p.id === id);
+                const nuevoStock = Math.max(0, producto.stock + cambio);
+                
+                await api.updateStock(id, nuevoStock);
+                showToast(`Stock actualizado: ${producto.name}`, 'info');
+                await cargarProductos();
+            } catch (error) {
+                console.error('Error ajustando stock:', error);
+                showToast('Error al ajustar stock: ' + error.message, 'danger');
+            }
+        }
+
+        async function buscarProductos() {
+            const searchTerm = document.getElementById('inputBuscar').value.trim();
+            
+            try {
+                if (searchTerm) {
+                    productos = await api.searchProducts(searchTerm);
+                } else {
+                    productos = await api.getProducts();
+                }
+                renderizarProductos();
+            } catch (error) {
+                console.error('Error buscando productos:', error);
+                showToast('Error en búsqueda: ' + error.message, 'danger');
+            }
+        }
+
+        function limpiarFormulario() {
+            document.getElementById('formProducto').reset();
+            document.getElementById('productoId').value = '';
+            document.getElementById('modalTitle').textContent = 'Agregar Producto';
+            document.getElementById('btnGuardarText').textContent = 'Guardar Producto';
+        }
+
+        // ========== FUNCIONES AUXILIARES ==========
+        function obtenerEstadoStock(stock) {
+            if (stock === 0) {
+                return { 
+                    clase: 'badge-stock-bajo', 
+                    texto: 'Sin Stock', 
+                    icono: 'bi-x-circle-fill' 
+                };
+            } else if (stock < 10) {
+                return { 
+                    clase: 'badge-stock-medio', 
+                    texto: 'Bajo Stock', 
+                    icono: 'bi-exclamation-triangle-fill' 
+                };
+            } else {
+                return { 
+                    clase: 'badge-stock-alto', 
+                    texto: 'Stock Normal', 
+                    icono: 'bi-check-circle-fill' 
+                };
+            }
+        }
+
+        function obtenerIconoProducto(nombre) {
+            const iconos = {
+                'laptop': '💻',
+                'mouse': '🖱️',
+                'teclado': '⌨️',
+                'monitor': '🖥️',
+                'iphone': '📱',
+                'audífonos': '🎧',
+                'tablet': '📱',
+                'default': '📦'
+            };
+            
+            const key = Object.keys(iconos).find(k => 
+                nombre.toLowerCase().includes(k)
+            );
+            
+            return iconos[key] || iconos.default;
+        }
+
+        // ========== EVENT LISTENERS ==========
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Verificar autenticación inicial
+            updateUserUI();
+            
+            // Si está autenticado, cargar datos
+            if (api.isAuthenticated()) {
+                await cargarCategorias();
+                await cargarProductos();
+            }
+
+            // Login form
+            document.getElementById('loginForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const username = document.getElementById('loginUsername').value;
+                const password = document.getElementById('loginPassword').value;
+                
+                try {
+                    await api.login(username, password);
+                    showToast('Login exitoso', 'success');
+                    updateUserUI();
+                    await cargarCategorias();
+                    await cargarProductos();
+                } catch (error) {
+                    showToast('Error en login: ' + error.message, 'danger');
+                }
+            });
+
+            // Logout
+            document.getElementById('logoutBtn').addEventListener('click', function() {
+                api.logout();
+            });
+
+            // Guardar producto
+            document.getElementById('btnGuardarProducto').addEventListener('click', guardarProducto);
+
+            // Refrescar datos
+            document.getElementById('btnRefrescar').addEventListener('click', async function() {
+                await cargarProductos();
+                showToast('Datos actualizados', 'info');
+            });
+
+            // Búsqueda con debounce
+            let searchTimeout;
+            document.getElementById('inputBuscar').addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(buscarProductos, 500);
+            });
+
+            // Limpiar formulario al cerrar modal
+            document.getElementById('modalAgregarProducto').addEventListener('hidden.bs.modal', limpiarFormulario);
+        });
+
+        console.log("=== SISTEMA DE INVENTARIO FULL-STACK ===");
+        console.log("Frontend: JavaScript");
+        console.log("Backend: .NET 7 Web API");
+        console.log("Base de datos: SQL Server Express");
+        console.log("Autenticación: JWT");
+    </script>
+</body>
+</html>

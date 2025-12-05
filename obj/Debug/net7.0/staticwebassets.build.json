@@ -1,0 +1,39 @@
+{
+  "Version": 1,
+  "Hash": "a3IThz49UmuvNXq+4pZn+8ei0/TyOSGU/Iw2yCrwNNk=",
+  "Source": "SistemaInventario",
+  "BasePath": "_content/SistemaInventario",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "SistemaInventario\\wwwroot",
+      "Source": "SistemaInventario",
+      "ContentRoot": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\wwwroot\\",
+      "BasePath": "_content/SistemaInventario",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\wwwroot\\inventario_con_apis.html",
+      "SourceId": "SistemaInventario",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\wwwroot\\",
+      "BasePath": "_content/SistemaInventario",
+      "RelativePath": "inventario_con_apis.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\inventario_con_apis.html"
+    }
+  ]
+}

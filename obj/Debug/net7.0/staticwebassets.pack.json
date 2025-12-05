@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\ismae\\source\\repos\\SistemaInventario\\wwwroot\\inventario_con_apis.html",
+      "PackagePath": "staticwebassets\\inventario_con_apis.html"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.SistemaInventario.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.SistemaInventario.props",
+      "PackagePath": "build\\SistemaInventario.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.SistemaInventario.props",
+      "PackagePath": "buildMultiTargeting\\SistemaInventario.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.SistemaInventario.props",
+      "PackagePath": "buildTransitive\\SistemaInventario.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
